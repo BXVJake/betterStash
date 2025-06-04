@@ -5,11 +5,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import application.functional.AppData;
 import application.functional.processingMode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +26,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
-public class CTR_procModeLanding 
+public class CTR_procModeLanding implements Initializable
 {
 
     @FXML
@@ -61,6 +65,19 @@ public class CTR_procModeLanding
     private Stage stage;
     private Scene scene;
     private Parent root;
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+    	FLD_schemaPath.setText(AppData.getSetting("schemaPath"));
+		FLD_direcPath.setText(AppData.getSetting("direcPath"));
+
+		if (!FLD_schemaPath.getText().isEmpty())
+			CHK_saveSchema.setSelected(true);
+
+		if (!FLD_direcPath.getText().isEmpty())
+			CHK_saveDirec.setSelected(true);
+    }
     
     @FXML
     void ACT_back(ActionEvent e) 
@@ -118,6 +135,36 @@ public class CTR_procModeLanding
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
+			
+			if (processingMode.testSchema())
+			{
+				FLD_schemaPath.setStyle("-fx-border-color: green;");
+
+				// ✅ Save schema path if checkbox is selected
+				if (CHK_saveSchema.isSelected())
+				{
+					AppData.saveSetting("schemaPath", FLD_schemaPath.getText());
+				}
+			}
+			else
+			{
+				FLD_schemaPath.setStyle("-fx-border-color: red;");
+			}
+
+			if (processingMode.testDirectory())
+			{
+				FLD_direcPath.setStyle("-fx-border-color: green;");
+
+				// ✅ Save directory path if checkbox is selected
+				if (CHK_saveDirec.isSelected())
+				{
+					AppData.saveSetting("direcPath", FLD_direcPath.getText());
+				}
+			}
+			else
+			{
+				FLD_direcPath.setStyle("-fx-border-color: red;");
+			}
 		} 
     	catch (IOException e1)
 		{
