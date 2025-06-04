@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.DirectoryChooser;
@@ -62,6 +63,11 @@ public class CTR_procModeLanding implements Initializable
     @FXML
     private CheckBox CHK_saveDirec;
     
+    @FXML
+    private ChoiceBox<String> CH_mediaType;
+    
+    private String[] mediaType = {"Images", "Videos"};
+    
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -73,10 +79,16 @@ public class CTR_procModeLanding implements Initializable
 		FLD_direcPath.setText(AppData.getSetting("direcPath"));
 
 		if (!FLD_schemaPath.getText().isEmpty())
+		{
 			CHK_saveSchema.setSelected(true);
-
+		}
+		
 		if (!FLD_direcPath.getText().isEmpty())
+		{
 			CHK_saveDirec.setSelected(true);
+		}
+		
+		CH_mediaType.getItems().addAll(mediaType);
     }
     
     @FXML
@@ -140,7 +152,6 @@ public class CTR_procModeLanding implements Initializable
 			{
 				FLD_schemaPath.setStyle("-fx-border-color: green;");
 
-				// ✅ Save schema path if checkbox is selected
 				if (CHK_saveSchema.isSelected())
 				{
 					AppData.saveSetting("schemaPath", FLD_schemaPath.getText());
@@ -155,7 +166,6 @@ public class CTR_procModeLanding implements Initializable
 			{
 				FLD_direcPath.setStyle("-fx-border-color: green;");
 
-				// ✅ Save directory path if checkbox is selected
 				if (CHK_saveDirec.isSelected())
 				{
 					AppData.saveSetting("direcPath", FLD_direcPath.getText());
