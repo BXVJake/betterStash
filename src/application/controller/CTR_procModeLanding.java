@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.run;
 import application.functional.AppData;
 import application.functional.processingMode;
 import javafx.event.ActionEvent;
@@ -64,9 +65,12 @@ public class CTR_procModeLanding implements Initializable
     private CheckBox CHK_saveDirec;
     
     @FXML
+    private CheckBox CHK_mediaType;
+    
+    @FXML
     private ChoiceBox<String> CH_mediaType;
     
-    private String[] mediaType = {"Images", "Videos"};
+    private String[] mediaType = {"Images", "Scenes"};
     
     private Stage stage;
     private Scene scene;
@@ -77,6 +81,7 @@ public class CTR_procModeLanding implements Initializable
     {
     	FLD_schemaPath.setText(AppData.getSetting("schemaPath"));
 		FLD_direcPath.setText(AppData.getSetting("direcPath"));
+		CH_mediaType.setValue(AppData.getSetting("mediaType"));
 
 		if (!FLD_schemaPath.getText().isEmpty())
 		{
@@ -96,7 +101,7 @@ public class CTR_procModeLanding implements Initializable
     {
     	try
 		{
-			Parent root = FXMLLoader.load((getClass().getResource("/SCR_home.fxml")));
+			Parent root = FXMLLoader.load((getClass().getResource(run.prevScreen)));
 			stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -175,6 +180,8 @@ public class CTR_procModeLanding implements Initializable
 			{
 				FLD_direcPath.setStyle("-fx-border-color: red;");
 			}
+			
+			AppData.saveSetting("mediaType", CH_mediaType.getValue());
 		} 
     	catch (IOException e1)
 		{
@@ -188,6 +195,30 @@ public class CTR_procModeLanding implements Initializable
     	String rawPath = FLD_schemaPath.getText().trim();
     	processingMode.schema = new File(rawPath);
     	processingMode.directory = new File(FLD_direcPath.getText().trim());
+    	
+    	boolean validMediaType;
+    	
+    	switch(CH_mediaType.getValue())
+    	{
+    		case "Images":
+    			processingMode.mediaType = true;
+    			CH_mediaType.setStyle("-fx-border-color: green;");
+    			validMediaType = true;
+    			break;
+    		case "Scenes":
+    			processingMode.mediaType = false;
+    			CH_mediaType.setStyle("-fx-border-color: green;");
+    			validMediaType = true;
+    			break;
+    		case null:
+    			CH_mediaType.setStyle("-fx-border-color: red;");
+    			validMediaType = false;
+    			break;
+    		default:
+    			CH_mediaType.setStyle("-fx-border-color: red;");
+    			validMediaType = false;
+    			break;
+    	}
     	
     	boolean validSchema = processingMode.testSchema();
     	boolean validDirectory = processingMode.testDirectory();
@@ -210,9 +241,9 @@ public class CTR_procModeLanding implements Initializable
     		FLD_direcPath.setStyle("-fx-border-color: red;");
     	}
     	
-    	if (validSchema && validDirectory)
+    	if (validSchema && validDirectory && validMediaType)
     	{
-    		BUT_proceed.setDisable(!(validSchema && validDirectory));
+    		BUT_proceed.setDisable(!(validSchema && validDirectory&& validMediaType));
     	}
     }
 }

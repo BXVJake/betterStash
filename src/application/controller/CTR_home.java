@@ -2,6 +2,7 @@ package application.controller;
 
 import java.io.IOException;
 
+import application.run;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +31,8 @@ public class CTR_home
     {
     	try
 		{
-			Parent root = FXMLLoader.load((getClass().getResource("/SCR_procModeLanding.fxml")));
+			run.prevScreen = "/SCR_home.fxml";
+    		Parent root = FXMLLoader.load((getClass().getResource("/SCR_procModeLanding.fxml")));
 			stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -46,7 +48,8 @@ public class CTR_home
     {
     	try
 		{
-			Parent root = FXMLLoader.load((getClass().getResource("/SCR_comingSoon.fxml")));
+    		run.prevScreen = "/SCR_home.fxml";
+    		Parent root = FXMLLoader.load((getClass().getResource("/SCR_comingSoon.fxml")));
 			stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -62,7 +65,8 @@ public class CTR_home
     {
     	try
 		{
-			Parent root = FXMLLoader.load((getClass().getResource("/SCR_comingSoon.fxml")));
+    		run.prevScreen = "/SCR_home.fxml";
+    		Parent root = FXMLLoader.load((getClass().getResource("/SCR_comingSoon.fxml")));
 			stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);

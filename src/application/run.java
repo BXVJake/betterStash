@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 
 public class run extends Application 
 {
+	public static String prevScreen;
+	
 	@Override
 	public void start(Stage stage) 
 	{

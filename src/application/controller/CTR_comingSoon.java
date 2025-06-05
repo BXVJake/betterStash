@@ -2,6 +2,7 @@ package application.controller;
 
 import java.io.IOException;
 
+import application.run;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,7 @@ public class CTR_comingSoon
 	 {
 		 try
 			{
-				Parent root = FXMLLoader.load((getClass().getResource("/SCR_home.fxml")));
+				Parent root = FXMLLoader.load((getClass().getResource(run.prevScreen)));
 				stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 				scene = new Scene(root);
 				stage.setScene(scene);

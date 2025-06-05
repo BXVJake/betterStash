@@ -9,6 +9,7 @@ public class processingMode
 {
 	public static File schema;
 	public static File directory;
+	public static boolean mediaType; //true = images, false = videos.
 	
 	public static boolean testSchema()
 	{
