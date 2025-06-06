@@ -48,12 +48,19 @@ public class CTR_procModeLanding implements Initializable
 
     @FXML
     private Button BUT_validate;
+    
+    @FXML
+    private Button BUT_openXpl3;
+    
 
     @FXML
     private TextField FLD_direcPath;
 
     @FXML
     private TextField FLD_schemaPath;
+    
+    @FXML
+    private TextField FLD_instPath;
 
     @FXML
     private Tooltip TTP_proceed;
@@ -66,6 +73,9 @@ public class CTR_procModeLanding implements Initializable
     
     @FXML
     private CheckBox CHK_mediaType;
+    
+    @FXML 
+    private CheckBox CHK_saveInst;
     
     @FXML
     private ChoiceBox<String> CH_mediaType;
@@ -81,6 +91,7 @@ public class CTR_procModeLanding implements Initializable
     {
     	FLD_schemaPath.setText(AppData.getSetting("schemaPath"));
 		FLD_direcPath.setText(AppData.getSetting("direcPath"));
+		FLD_instPath.setText(AppData.getSetting("instLoc"));
 		CH_mediaType.setValue(AppData.getSetting("mediaType"));
 
 		if (!FLD_schemaPath.getText().isEmpty())
@@ -141,6 +152,16 @@ public class CTR_procModeLanding implements Initializable
     	File selected = chooser.showDialog(null);
     	FLD_direcPath.setText(selected.getAbsolutePath());
     }
+    
+    @FXML
+    void ACT_openExpl3(ActionEvent e) 
+    {
+    	DirectoryChooser chooser = new DirectoryChooser();
+    	chooser.setTitle("Open .stash Installation Directory");
+    	
+    	File selected = chooser.showDialog(null);
+    	FLD_instPath.setText(selected.getAbsolutePath());
+    }
 
     @FXML
     void ACT_proceed(ActionEvent e)
@@ -153,37 +174,24 @@ public class CTR_procModeLanding implements Initializable
 			stage.setScene(scene);
 			stage.show();
 			
-			if (processingMode.testSchema())
+			if (CHK_saveSchema.isSelected())
 			{
-				FLD_schemaPath.setStyle("-fx-border-color: green;");
-
-				if (CHK_saveSchema.isSelected())
-				{
-					AppData.saveSetting("schemaPath", FLD_schemaPath.getText());
-				}
+				AppData.saveSetting("schemaPath", FLD_schemaPath.getText());
 			}
-			else
+			
+			if (CHK_saveDirec.isSelected())
 			{
-				FLD_schemaPath.setStyle("-fx-border-color: red;");
-			}
-
-			if (processingMode.testDirectory())
-			{
-				FLD_direcPath.setStyle("-fx-border-color: green;");
-
-				if (CHK_saveDirec.isSelected())
-				{
-					AppData.saveSetting("direcPath", FLD_direcPath.getText());
-				}
-			}
-			else
-			{
-				FLD_direcPath.setStyle("-fx-border-color: red;");
+				AppData.saveSetting("direcPath", FLD_direcPath.getText());
 			}
 			
 			if (CHK_mediaType.isSelected())
 			{
 				AppData.saveSetting("mediaType", CH_mediaType.getValue());
+			}
+			
+			if (CHK_saveInst.isSelected())
+			{
+				AppData.saveSetting("instLoc", FLD_instPath.getText());
 			}
 		} 
     	catch (IOException e1)
@@ -198,6 +206,7 @@ public class CTR_procModeLanding implements Initializable
     	String rawPath = FLD_schemaPath.getText().trim();
     	processingMode.schema = new File(rawPath);
     	processingMode.directory = new File(FLD_direcPath.getText().trim());
+    	processingMode.instLoc = new File(FLD_instPath.getText().trim());
     	
     	boolean validMediaType;
     	
@@ -225,6 +234,7 @@ public class CTR_procModeLanding implements Initializable
     	
     	boolean validSchema = processingMode.testSchema();
     	boolean validDirectory = processingMode.testDirectory();
+    	boolean validInst = processingMode.testInst();
     	
     	if (validSchema)
     	{
@@ -244,9 +254,18 @@ public class CTR_procModeLanding implements Initializable
     		FLD_direcPath.setStyle("-fx-border-color: red;");
     	}
     	
-    	if (validSchema && validDirectory && validMediaType)
+    	if(validInst)
     	{
-    		BUT_proceed.setDisable(!(validSchema && validDirectory&& validMediaType));
+    		FLD_instPath.setStyle("-fx-border-color: green;");
+    	}
+    	else
+    	{
+    		FLD_instPath.setStyle("-fx-border-color: red;");
+    	}
+    	
+    	if (validSchema && validDirectory && validMediaType && validInst)
+    	{
+    		BUT_proceed.setDisable(!(validSchema && validDirectory&& validMediaType && validInst));
     	}
     }
 }

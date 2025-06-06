@@ -29,7 +29,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ToolBar layoutX="192.0" layoutY="290.0" prefHeight="53.0" prefWidth="817.0">
+      <ToolBar layoutX="193.0" layoutY="214.0" prefHeight="53.0" prefWidth="817.0">
         <items>
           <Button fx:id="BUT_openExpl1" mnemonicParsing="false" onAction="#ACT_openExpl1" prefHeight="38.0" prefWidth="145.0" text="Open File Explorer">
                <font>
@@ -115,5 +115,35 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </CheckBox>
+      <ToolBar layoutX="193.0" layoutY="298.0" prefHeight="53.0" prefWidth="817.0">
+         <items>
+            <Button fx:id="BUT_openExpl3" mnemonicParsing="false" onAction="#ACT_openExpl3" prefHeight="38.0" prefWidth="145.0" text="Open File Explorer">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField fx:id="FLD_instPath" prefHeight="38.0" prefWidth="372.0" promptText="Stash Installation Directory">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <CheckBox fx:id="CHK_saveInst" mnemonicParsing="false" prefHeight="20.0" prefWidth="98.0" text="Save Input">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </CheckBox>
+            <Button fx:id="BUT_help2" mnemonicParsing="false" onAction="#ACT_help2" prefHeight="37.0" prefWidth="176.0" text="How do I find my installation?">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </items>
+      </ToolBar>
    </children>
 </AnchorPane>

@@ -10,6 +10,7 @@ public class processingMode
 {
 	public static File schema;
 	public static File directory;
+	public static File instLoc;
 	public static boolean mediaType; //true = images, false = videos.
 	
 	public static boolean testSchema()
@@ -52,5 +53,14 @@ public class processingMode
 		
 		
 		return fileTypes;
+	}
+	
+	public static boolean testInst()
+	{
+		if (!instLoc.isDirectory())
+		{
+			return false;
+		}
+		return true;
 	}
 }

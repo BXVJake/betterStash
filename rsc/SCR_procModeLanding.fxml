@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.Tooltip?>
@@ -117,7 +118,7 @@
       </CheckBox>
       <ToolBar layoutX="193.0" layoutY="298.0" prefHeight="53.0" prefWidth="817.0">
          <items>
-            <Button fx:id="BUT_openExpl21" mnemonicParsing="false" onAction="#ACT_openExpl2" prefHeight="38.0" prefWidth="145.0" text="Open File Explorer">
+            <Button fx:id="BUT_openExpl3" mnemonicParsing="false" onAction="#ACT_openExpl3" prefHeight="38.0" prefWidth="145.0" text="Open File Explorer">
                <font>
                   <Font size="14.0" />
                </font>
@@ -125,12 +126,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="FLD_direcPath1" prefHeight="38.0" prefWidth="554.0" promptText="Stash Installation Directory">
+            <TextField fx:id="FLD_instPath" prefHeight="38.0" prefWidth="554.0" promptText="Stash Installation Directory">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <CheckBox fx:id="CHK_saveDirec1" mnemonicParsing="false" prefHeight="20.0" prefWidth="98.0" text="Save Input">
+            <CheckBox fx:id="CHK_saveInst" mnemonicParsing="false" prefHeight="20.0" prefWidth="98.0" text="Save Input">
                <font>
                   <Font size="14.0" />
                </font>
@@ -140,5 +141,11 @@
             </CheckBox>
          </items>
       </ToolBar>
+      <TextArea editable="false" layoutX="878.0" layoutY="668.0" prefHeight="105.0" prefWidth="308.0" text="1) In the stash webapp, go to settings.&#10;2) In settings, find the &quot;System&quot; tab.&#10;3) Scroll to the &quot;Generated Path&quot; section, and copy the &#10;path from the beginning until just after &quot;.stash&quot;.&#10;4) Paste in betterStash." />
+      <Label alignment="CENTER" layoutX="878.0" layoutY="630.0" prefHeight="37.0" prefWidth="308.0" text="Finding Installation Directory">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
