@@ -147,7 +147,7 @@ public class CTR_procModeLanding implements Initializable
     {
     	try
 		{
-			Parent root = FXMLLoader.load((getClass().getResource("/SCR_comingSoon.fxml")));
+			Parent root = FXMLLoader.load((getClass().getResource("/SCR_procScan.fxml")));
 			stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -181,7 +181,10 @@ public class CTR_procModeLanding implements Initializable
 				FLD_direcPath.setStyle("-fx-border-color: red;");
 			}
 			
-			AppData.saveSetting("mediaType", CH_mediaType.getValue());
+			if (CHK_mediaType.isSelected())
+			{
+				AppData.saveSetting("mediaType", CH_mediaType.getValue());
+			}
 		} 
     	catch (IOException e1)
 		{

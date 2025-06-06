@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class processingMode
 {
@@ -43,5 +44,13 @@ public class processingMode
 			return false;
 		}
 		return true;
+	}
+	
+	public static ArrayList<String> findTypes()
+	{
+		ArrayList<String> fileTypes = new ArrayList<String>();
+		
+		
+		return fileTypes;
 	}
 }

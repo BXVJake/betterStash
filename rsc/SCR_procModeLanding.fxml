@@ -29,7 +29,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ToolBar layoutX="192.0" layoutY="290.0" prefHeight="53.0" prefWidth="817.0">
+      <ToolBar layoutX="193.0" layoutY="214.0" prefHeight="53.0" prefWidth="817.0">
         <items>
           <Button fx:id="BUT_openExpl1" mnemonicParsing="false" onAction="#ACT_openExpl1" prefHeight="38.0" prefWidth="145.0" text="Open File Explorer">
                <font>
@@ -115,5 +115,30 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </CheckBox>
+      <ToolBar layoutX="193.0" layoutY="298.0" prefHeight="53.0" prefWidth="817.0">
+         <items>
+            <Button fx:id="BUT_openExpl21" mnemonicParsing="false" onAction="#ACT_openExpl2" prefHeight="38.0" prefWidth="145.0" text="Open File Explorer">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField fx:id="FLD_direcPath1" prefHeight="38.0" prefWidth="554.0" promptText="Stash Installation Directory">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <CheckBox fx:id="CHK_saveDirec1" mnemonicParsing="false" prefHeight="20.0" prefWidth="98.0" text="Save Input">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </CheckBox>
+         </items>
+      </ToolBar>
    </children>
 </AnchorPane>
