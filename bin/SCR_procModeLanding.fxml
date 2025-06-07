@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.Tooltip?>
@@ -125,7 +126,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="FLD_instPath" prefHeight="38.0" prefWidth="372.0" promptText="Stash Installation Directory">
+            <TextField fx:id="FLD_instPath" prefHeight="38.0" prefWidth="554.0" promptText="Stash Installation Directory">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -138,12 +139,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </CheckBox>
-            <Button fx:id="BUT_help2" mnemonicParsing="false" onAction="#ACT_help2" prefHeight="37.0" prefWidth="176.0" text="How do I find my installation?">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
          </items>
       </ToolBar>
+      <TextArea editable="false" layoutX="878.0" layoutY="668.0" prefHeight="105.0" prefWidth="308.0" text="1) In the stash webapp, go to settings.&#10;2) In settings, find the &quot;System&quot; tab.&#10;3) Scroll to the &quot;Generated Path&quot; section, and copy the &#10;path from the beginning until just after &quot;.stash&quot;.&#10;4) Paste in betterStash." />
+      <Label alignment="CENTER" layoutX="878.0" layoutY="630.0" prefHeight="37.0" prefWidth="308.0" text="Finding Installation Directory">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

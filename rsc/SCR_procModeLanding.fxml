@@ -108,7 +108,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <CheckBox fx:id="CHK_saveMediaType" layoutX="741.0" layoutY="522.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="98.0" text="Save Input">
+      <CheckBox fx:id="CHK_mediaType" layoutX="741.0" layoutY="522.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="98.0" text="Save Input">
          <font>
             <Font size="14.0" />
          </font>

@@ -52,7 +52,6 @@ public class CTR_procModeLanding implements Initializable
     @FXML
     private Button BUT_openXpl3;
     
-
     @FXML
     private TextField FLD_direcPath;
 
@@ -193,6 +192,8 @@ public class CTR_procModeLanding implements Initializable
 			{
 				AppData.saveSetting("instLoc", FLD_instPath.getText());
 			}
+			
+			processingMode.findTypes();
 		} 
     	catch (IOException e1)
 		{
