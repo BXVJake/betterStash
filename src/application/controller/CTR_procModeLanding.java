@@ -2,6 +2,7 @@ package application.controller;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -163,7 +164,7 @@ public class CTR_procModeLanding implements Initializable
     }
 
     @FXML
-    void ACT_proceed(ActionEvent e)
+    void ACT_proceed(ActionEvent e) throws FileNotFoundException
     {
     	try
 		{
@@ -192,13 +193,13 @@ public class CTR_procModeLanding implements Initializable
 			{
 				AppData.saveSetting("instLoc", FLD_instPath.getText());
 			}
-			
-			processingMode.findTypes();
 		} 
     	catch (IOException e1)
 		{
 			e1.printStackTrace();
 		}
+    	
+    	System.out.println(processingMode.findTypes());
     }
 
     @FXML

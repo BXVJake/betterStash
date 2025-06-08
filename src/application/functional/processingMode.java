@@ -54,21 +54,34 @@ public class processingMode
 		return true;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static ArrayList<String> findTypes() throws FileNotFoundException
 	{
 		Yaml yaml = new Yaml();
 		InputStream input = new FileInputStream(instLoc.toString() + "\\config.yml");
 		
 		Map<String, Object> data = yaml.load(input);
-		@SuppressWarnings("unchecked")
-		ArrayList<String> fileTypes = (ArrayList<String>) data.get("video_extensions");
 		
-		System.out.println("Video extensions loaded:");
-		for (String ext : fileTypes) {
-		    System.out.println("- " + ext);
+		ArrayList<String> fileTypes;
+		if (mediaType)
+		{
+			fileTypes = (ArrayList<String>) data.get("image_extensions");
+		}
+		else
+		{
+			fileTypes = (ArrayList<String>) data.get("video_extensions");
+		}
+		ArrayList<Integer> amounts = new ArrayList<Integer>();
+		ArrayList<String> pairs = new ArrayList<String>();
+		
+		for (String fileType : fileTypes)
+		{
+			String[] matches = directory.list((dir, name) -> name.endsWith(fileType));
+			String str = "*." + fileType + " (" + matches.length + ")";
+			pairs.add(str);
 		}
 		
-		return fileTypes;
+		return pairs;
 	}
 	
 	public static boolean testInst()
