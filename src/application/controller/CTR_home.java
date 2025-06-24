@@ -49,7 +49,7 @@ public class CTR_home
     	try
 		{
     		run.prevScreen = "/SCR_home.fxml";
-    		Parent root = FXMLLoader.load((getClass().getResource("/SCR_comingSoon.fxml")));
+    		Parent root = FXMLLoader.load((getClass().getResource("/SCR_config.fxml")));
 			stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);

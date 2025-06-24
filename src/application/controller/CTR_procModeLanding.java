@@ -68,7 +68,9 @@ public class CTR_procModeLanding implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-		FLD_direcPath.setText(AppData.getSetting("direcPath"));
+		
+    	
+    	FLD_direcPath.setText(AppData.getSetting("direcPath"));
 		CH_mediaType.setValue(AppData.getSetting("mediaType"));
 		
 		if (!FLD_direcPath.getText().isEmpty())
@@ -119,12 +121,12 @@ public class CTR_procModeLanding implements Initializable
 			
 			if (CHK_saveDirec.isSelected())
 			{
-				AppData.saveSetting("direcPath", FLD_direcPath.getText());
+				AppData.saveSetting("proc_direcPath", FLD_direcPath.getText());
 			}
 			
 			if (CHK_mediaType.isSelected())
 			{
-				AppData.saveSetting("mediaType", CH_mediaType.getValue());
+				AppData.saveSetting("proc_mediaType", CH_mediaType.getValue());
 			}
 		} 
     	catch (IOException e1)

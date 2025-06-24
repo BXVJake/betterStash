@@ -45,6 +45,12 @@ public class CTR_config implements Initializable
     @FXML
     private TextField FLD_instPath;
     
+    @FXML
+    private TextField FLD_port;
+    
+    @FXML
+    private TextField FLD_apiKey;
+    
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -54,13 +60,16 @@ public class CTR_config implements Initializable
     {
     	FLD_schemaPath.setText(AppData.getSetting("schemaPath"));
     	FLD_instPath.setText(AppData.getSetting("instLoc"));
+    	FLD_port.setText(AppData.getSetting("port"));
+    	FLD_apiKey.setText(AppData.getSetting("apiKey"));
     }
     
-    void ACT_back(ActionEvent e) 
+    @FXML
+    void ACT_home(ActionEvent e) 
     {
     	try
 		{
-			Parent root = FXMLLoader.load((getClass().getResource("/rsc/SCR_home.fxml")));
+			Parent root = FXMLLoader.load((getClass().getResource("/SCR_home.fxml")));
 			stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -104,29 +113,49 @@ public class CTR_config implements Initializable
     @FXML
     void ACT_save(ActionEvent e)
     {
-    	String rawPath = FLD_schemaPath.getText().trim();
-    	processingMode.schema = new File(rawPath);
-    	processingMode.instLoc = new File(FLD_instPath.getText().trim());
-    	
-    	boolean validSchema = processingMode.testSchema();
-    	boolean validInst = processingMode.testInst();
-    	
-    	if (validSchema)
+    	processingMode.schema = new File(FLD_schemaPath.getText().trim());
+		processingMode.instLoc = new File(FLD_instPath.getText().trim());
+		processingMode.port = FLD_port.getText();
+		processingMode.apiKey = FLD_apiKey.getText();
+
+    	if (processingMode.testSchema())
     	{
     		FLD_schemaPath.setStyle("-fx-border-color: green;");
+    		AppData.saveSetting("schemaPath", FLD_schemaPath.getText());
     	}
     	else
     	{
     		FLD_schemaPath.setStyle("-fx-border-color: red;");
     	}
     	
-    	if(validInst)
+    	if(processingMode.testInst())
     	{
     		FLD_instPath.setStyle("-fx-border-color: green;");
+    		AppData.saveSetting("instPath", FLD_instPath.getText());
     	}
     	else
     	{
     		FLD_instPath.setStyle("-fx-border-color: red;");
+    	}
+    	
+    	if (processingMode.testAuth(1000))
+    	{
+    		FLD_apiKey.setStyle("-fx-border-color: green;");
+    		AppData.saveSetting("apiKey", FLD_apiKey.getText());
+    	}
+    	else
+    	{
+    		FLD_apiKey.setStyle("-fx-border-color: red;");
+    	}
+    	
+    	if (processingMode.testCnxn(1000))
+    	{
+    		FLD_port.setStyle("-fx-border-color: green;");
+    		AppData.saveSetting("port", FLD_port.getText());
+    	}
+    	else
+    	{
+    		FLD_port.setStyle("-fx-border-color: red;");
     	}
     }
 

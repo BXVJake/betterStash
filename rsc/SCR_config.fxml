@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CTR_config">
    <children>
       <Label layoutX="487.0" layoutY="80.0" text="Config">
@@ -115,7 +114,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="BUT_home" layoutX="14.0" layoutY="717.0" mnemonicParsing="false" onAction="#ACT_back" prefHeight="65.0" prefWidth="164.0" text="Home">
+      <Button fx:id="BUT_home" layoutX="14.0" layoutY="717.0" mnemonicParsing="false" onAction="#ACT_home" prefHeight="65.0" prefWidth="164.0" text="Home">
          <font>
             <Font size="32.0" />
          </font>

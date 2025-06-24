@@ -31,7 +31,7 @@
       </Button>
       <ToolBar layoutX="192.0" layoutY="374.0" prefHeight="53.0" prefWidth="817.0">
          <items>
-            <Button fx:id="BUT_openExpl2" mnemonicParsing="false" onAction="#ACT_openExpl2" prefHeight="38.0" prefWidth="145.0" text="Open File Explorer">
+            <Button fx:id="BUT_openExpl" mnemonicParsing="false" onAction="#ACT_openExpl" prefHeight="38.0" prefWidth="145.0" text="Open File Explorer">
                <font>
                   <Font size="14.0" />
                </font>

@@ -15,7 +15,9 @@ import java.util.Scanner;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
+import java.net.Socket;
 import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -24,15 +26,12 @@ import org.yaml.snakeyaml.Yaml;
 
 public class processingMode
 {
-	public static File schema;
+	public static File schema = new File(AppData.getSetting("schemaPath"));
 	public static File directory;
-	public static File instLoc;
+	public static File instLoc = new File(AppData.getSetting("instLoc"));
 	public static boolean mediaType; //true = images, false = videos.
-	public static int port = 9999;
-	public static String username = "BlahB5309";
-	public static String password = "53095309";
-	public static String apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJCbGFoQjUzMDkiLCJzdWIiOiJBUElLZXkiLCJpYXQiOjE3NTA3MzIzNzZ9.FTeQUYQuz_mv-aq8VlkYj9Lc5Pp9xb-fork1sgJzKkg";
-
+	public static String port = AppData.getSetting("port");
+	public static String apiKey = AppData.getSetting("apiKey");
 	
 	public static boolean testSchema()
 	{
@@ -119,11 +118,8 @@ public class processingMode
             conn.setRequestProperty("ApiKey", apiKey);
             conn.setDoOutput(true);
 
-            String jsonInputString = """
-										{
-											"query": "mutation { metadataScan(input: { rescan: true }) }"
-										}
-										""";
+            String jsonInputString = "{\"query\":\"mutation { metadataScan(input: { rescan: true }) }\"}";;
+;
             
             try (OutputStream os = conn.getOutputStream()) 
             {
@@ -149,4 +145,64 @@ public class processingMode
 			e.printStackTrace();
 		}
 	}
+	
+	public static boolean testCnxn(int timeout)
+	{
+		try (Socket socket = new Socket())
+		{
+			socket.connect(new InetSocketAddress("localhost", Integer.valueOf(port)), timeout);
+			return true;
+		}
+		catch (IOException e)
+		{
+			return false;
+		}
+	}
+	
+	public static boolean testAuth(int timeout)
+	{
+		try
+		{
+			URI uri = URI.create("http://localhost:" + port + "/graphql");
+			URL url = uri.toURL();
+
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("ApiKey", apiKey);
+			conn.setConnectTimeout(timeout);
+			conn.setReadTimeout(timeout);
+			conn.setDoOutput(true);
+
+			String testQuery = """
+				{
+					"query": "{ allTags { id } }"
+				}
+			""";
+
+			try (OutputStream os = conn.getOutputStream())
+			{
+				byte[] input = testQuery.getBytes(StandardCharsets.UTF_8);
+				os.write(input);
+			}
+
+			int responseCode = conn.getResponseCode();
+
+			if (responseCode >= 200 && responseCode < 300)
+			{
+				try (Scanner scanner = new Scanner(conn.getInputStream(), StandardCharsets.UTF_8))
+				{
+					String response = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
+					return response.contains("\"data\"");
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			// Silent fail
+		}
+
+		return false;
+	}
+
 }
