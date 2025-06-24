@@ -198,8 +198,6 @@ public class CTR_procModeLanding implements Initializable
 		{
 			e1.printStackTrace();
 		}
-    	
-    	System.out.println(processingMode.findTypes());
     }
 
     @FXML
