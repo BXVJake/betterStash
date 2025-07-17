@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
@@ -41,6 +42,11 @@ public class CTR_procScan implements Initializable
     @FXML
     private VBox VBOX_toggle;
     
+    @FXML
+    private ChoiceBox<String> CH_module;
+    
+    private String[] modules = {"Rule34.xxx"};
+    
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -58,6 +64,8 @@ public class CTR_procScan implements Initializable
 		{
 			e.printStackTrace();
 		}
+    	
+    	CH_module.getItems().addAll(modules);
     }
     
     @FXML

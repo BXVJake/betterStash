@@ -133,6 +133,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label layoutX="328.0" layoutY="458.0" text="If both Port and API Key are invalid, ensure that Stash is running!">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
    </children>
    <opaqueInsets>
       <Insets />
