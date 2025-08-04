@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import application.run;
 import application.functional.AppData;
+import application.functional.Modetype;
 import application.functional.processingMode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -144,12 +145,12 @@ public class CTR_procModeLanding implements Initializable
     	switch(CH_mediaType.getValue())
     	{
     		case "Images":
-    			processingMode.mediaType = true;
+    			processingMode.mediaType = Modetype.IMAGE;
     			CH_mediaType.setStyle("-fx-border-color: green;");
     			validMediaType = true;
     			break;
     		case "Scenes":
-    			processingMode.mediaType = false;
+    			processingMode.mediaType = Modetype.SCENE;
     			CH_mediaType.setStyle("-fx-border-color: green;");
     			validMediaType = true;
     			break;

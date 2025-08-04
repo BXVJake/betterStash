@@ -72,5 +72,10 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="BUT_go" layoutX="467.0" layoutY="563.0" mnemonicParsing="false" onAction="#ACT_go" prefHeight="52.0" prefWidth="267.0" text="Go!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

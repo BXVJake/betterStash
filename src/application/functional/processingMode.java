@@ -29,7 +29,7 @@ public class processingMode
 	public static File schema = new File(AppData.getSetting("schemaPath"));
 	public static File directory;
 	public static File instLoc = new File(AppData.getSetting("instLoc"));
-	public static boolean mediaType; //true = images, false = videos.
+	public static Modetype mediaType;
 	public static String port = AppData.getSetting("port");
 	public static String apiKey = AppData.getSetting("apiKey");
 	
@@ -76,15 +76,16 @@ public class processingMode
 		Map<String, Object> data = yaml.load(input);
 		
 		ArrayList<String> fileTypes;
-		if (mediaType)
+		switch (mediaType)
 		{
-			fileTypes = (ArrayList<String>) data.get("image_extensions");
+			case IMAGE:
+				fileTypes = (ArrayList<String>) data.get("image_extensions");
+			case SCENE:
+				fileTypes = (ArrayList<String>) data.get("video_extensions");
+			default:
+				fileTypes = null;
 		}
-		else
-		{
-			fileTypes = (ArrayList<String>) data.get("video_extensions");
-		}
-		ArrayList<Integer> amounts = new ArrayList<Integer>();
+		
 		ArrayList<String> pairs = new ArrayList<String>();
 		
 		for (String fileType : fileTypes)
@@ -204,5 +205,7 @@ public class processingMode
 
 		return false;
 	}
+	
+	
 
 }
