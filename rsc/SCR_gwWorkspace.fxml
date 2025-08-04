@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="720.0" prefWidth="1260.0" style="-fx-background-color: silver;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="70.0" prefWidth="1260.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3;" text="Organize" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="48.0" />
+               </font>
+            </Label>
+            <ToolBar layoutY="680.0" prefHeight="40.0" prefWidth="237.0">
+              <items>
+                  <MenuButton mnemonicParsing="false" popupSide="TOP" text="Select...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Verified" />
+                      <MenuItem mnemonicParsing="false" text="Unverified" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Registered" />
+                        <MenuItem mnemonicParsing="false" text="Unregistered" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Starred" />
+                        <Menu mnemonicParsing="false" text="Flagged...">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="All Flagged" />
+                              <MenuItem mnemonicParsing="false" text="No-Show" />
+                              <MenuItem mnemonicParsing="false" text="Query Error" />
+                          </items>
+                        </Menu>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <CheckMenuItem mnemonicParsing="false" text="Additive Select" />
+                    </items>
+                  </MenuButton>
+                <Button mnemonicParsing="false" text="Select All" />
+                  <Button mnemonicParsing="false" text="Deselect All" />
+              </items>
+            </ToolBar>
+            <ToolBar layoutX="400.0" layoutY="505.0" prefHeight="40.0" prefWidth="284.0">
+               <items>
+                  <Button mnemonicParsing="false" text="Add To New Batch" />
+                  <MenuButton mnemonicParsing="false" text="Move To...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </MenuButton>
+                  <Button mnemonicParsing="false" text="Remove" />
+               </items>
+            </ToolBar>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

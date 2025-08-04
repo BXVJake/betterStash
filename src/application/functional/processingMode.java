@@ -80,10 +80,13 @@ public class processingMode
 		{
 			case IMAGE:
 				fileTypes = (ArrayList<String>) data.get("image_extensions");
+				break;
 			case SCENE:
 				fileTypes = (ArrayList<String>) data.get("video_extensions");
+				break;
 			default:
-				fileTypes = null;
+				fileTypes = new ArrayList<>();
+				break;
 		}
 		
 		ArrayList<String> pairs = new ArrayList<String>();
